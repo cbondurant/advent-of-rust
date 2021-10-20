@@ -5,7 +5,7 @@ fn get_input(year: i32, day: i32) -> String{
     read_to_string(Path::new(&format!("inputs/{}-{}.txt", year, day))).expect("")
 }
 
-fn puzzle_2018_01(input : &str) -> i64{
+fn puzzle_2015_01(input : &str) -> i64{
     let mut floor = 0;
     let mut count = 0;
     for c in input.chars(){
@@ -24,5 +24,5 @@ fn puzzle_2018_01(input : &str) -> i64{
 }
 
 fn main() {
-    println!("{}", puzzle_2018_01(&get_input(2018,01)));
+    println!("{}", puzzle_2015_01(&get_input(2015,01)));
 }
