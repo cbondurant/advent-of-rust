@@ -62,29 +62,14 @@ fn puzzle_2015_3() -> (i64, i64){
     robo_homes.insert((0,0), true);
     let mut isR = false;
     for c in input.chars(){
-        match c {
-            '>' => gx-=1,
-            '<' => gx+=1,
-            '^' => gy+=1,
-            'v' => gy-=1,
-            _ => ()
+        match c {'>' => gx-=1,'<' => gx+=1,'^' => gy+=1,'v' => gy-=1,_ => ()
         }
         if isR == true {
-            match c {
-                '>' => rx-=1,
-                '<' => rx+=1,
-                '^' => ry+=1,
-                'v' => ry-=1,
-                _ => ()
+            match c {'>' => rx-=1,'<' => rx+=1,'^' => ry+=1,'v' => ry-=1,_ => ()
             }
         }
         else{
-            match c {
-                '>' => sx-=1,
-                '<' => sx+=1,
-                '^' => sy+=1,
-                'v' => sy-=1,
-                _ => ()
+            match c {'>' => sx-=1,'<' => sx+=1,'^' => sy+=1,'v' => sy-=1,_ => ()
             }
         }
         isR = !isR;
@@ -94,6 +79,8 @@ fn puzzle_2015_3() -> (i64, i64){
     }
     (homes.len() as i64, robo_homes.len() as i64)
 }
+
+
 
 fn main() {
     println!("{:?}", puzzle_2015_3());
