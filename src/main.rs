@@ -1,6 +1,8 @@
+#![allow(dead_code)]
 use std::fs::read_to_string;
 use std::path::Path;
 use std::cmp::{min,max};
+use std::collections::HashMap;
 
 fn get_input(year: i32, day: i32) -> String{
     read_to_string(Path::new(&format!("inputs/{}-{}.txt", year, day))).expect("")
@@ -49,6 +51,50 @@ fn puzzle_2015_2() -> (i64, i64){
     (total_area, total_ribbon)
 }
 
+fn puzzle_2015_3() -> (i64, i64){
+    let input = get_input(2015, 3);
+    let mut homes: HashMap<(i64, i64), bool> = HashMap::new();
+    let mut robo_homes: HashMap<(i64, i64), bool> = HashMap::new();
+    let (mut gx,mut gy) = (0,0); // Ghost from part 1
+    let (mut rx,mut ry) = (0,0); // Robo from part 2
+    let (mut sx,mut sy) = (0,0); // Santa from part 2
+    homes.insert((0,0), true);
+    robo_homes.insert((0,0), true);
+    let mut isR = false;
+    for c in input.chars(){
+        match c {
+            '>' => gx-=1,
+            '<' => gx+=1,
+            '^' => gy+=1,
+            'v' => gy-=1,
+            _ => ()
+        }
+        if isR == true {
+            match c {
+                '>' => rx-=1,
+                '<' => rx+=1,
+                '^' => ry+=1,
+                'v' => ry-=1,
+                _ => ()
+            }
+        }
+        else{
+            match c {
+                '>' => sx-=1,
+                '<' => sx+=1,
+                '^' => sy+=1,
+                'v' => sy-=1,
+                _ => ()
+            }
+        }
+        isR = !isR;
+        homes.entry((gx,gy)).or_insert(true);
+        robo_homes.entry((rx,ry)).or_insert(true);
+        robo_homes.entry((sx,sy)).or_insert(true);
+    }
+    (homes.len() as i64, robo_homes.len() as i64)
+}
+
 fn main() {
-    println!("{:?}", puzzle_2015_2());
+    println!("{:?}", puzzle_2015_3());
 }
