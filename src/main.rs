@@ -3,6 +3,7 @@ use std::fs::read_to_string;
 use std::path::Path;
 use std::cmp::{min,max};
 use std::collections::HashMap;
+extern crate md5;
 
 fn get_input(year: i32, day: i32) -> String{
     read_to_string(Path::new(&format!("inputs/{}-{}.txt", year, day))).expect("")
@@ -60,11 +61,11 @@ fn puzzle_2015_3() -> (i64, i64){
     let (mut sx,mut sy) = (0,0); // Santa from part 2
     homes.insert((0,0), true);
     robo_homes.insert((0,0), true);
-    let mut isR = false;
+    let mut is_r = false;
     for c in input.chars(){
         match c {'>' => gx-=1,'<' => gx+=1,'^' => gy+=1,'v' => gy-=1,_ => ()
         }
-        if isR == true {
+        if is_r == true {
             match c {'>' => rx-=1,'<' => rx+=1,'^' => ry+=1,'v' => ry-=1,_ => ()
             }
         }
@@ -72,7 +73,7 @@ fn puzzle_2015_3() -> (i64, i64){
             match c {'>' => sx-=1,'<' => sx+=1,'^' => sy+=1,'v' => sy-=1,_ => ()
             }
         }
-        isR = !isR;
+        is_r = !is_r;
         homes.entry((gx,gy)).or_insert(true);
         robo_homes.entry((rx,ry)).or_insert(true);
         robo_homes.entry((sx,sy)).or_insert(true);
@@ -80,8 +81,25 @@ fn puzzle_2015_3() -> (i64, i64){
     (homes.len() as i64, robo_homes.len() as i64)
 }
 
-
+fn puzzle_2015_4() -> (i64, i64){
+    let input = "iwrupvqb";
+    let mut i = 0;
+    let fivezeroes = 0 
+    loop {
+        let attempt = format!("{}{}", input, i);
+        // gotta force it to the right type
+        let hash = md5::compute(attempt);
+        if format!("{:x}", hash).starts_with("00000") & fivezeroes == 0{
+            fivezeroes = i;    
+        }
+        if format!("{:x}", hash).starts_with("000000"){
+            break;
+        }
+        i +=1;
+    }
+    (fivezeroes,i)
+}
 
 fn main() {
-    println!("{:?}", puzzle_2015_3());
+    println!("{:?}", puzzle_2015_4());
 }
