@@ -182,8 +182,8 @@ fn puzzle_2015_6() -> (i64, i64) {
     for line in input.split("\n") {
         if line.starts_with("turn on") {
             let coords = p15_6_parse_coords(&line[8..]);
-            for i in coords[0][0]..coords[1][0] + 1 {
-                for j in coords[0][1]..coords[1][1] + 1 {
+            for i in coords[0][0]..=coords[1][0] {
+                for j in coords[0][1]..=coords[1][1] {
                     lights[i + j * 1000] = true;
                     dimmerlights[i + j * 1000] += 1;
                 }
@@ -191,8 +191,8 @@ fn puzzle_2015_6() -> (i64, i64) {
         }
         if line.starts_with("turn off") {
             let coords = p15_6_parse_coords(&line[9..]);
-            for i in coords[0][0]..coords[1][0] + 1 {
-                for j in coords[0][1]..coords[1][1] + 1 {
+            for i in coords[0][0]..=coords[1][0] {
+                for j in coords[0][1]..=coords[1][1] {
                     lights[i + j * 1000] = false;
                     if dimmerlights[i + j * 1000] > 0 {
                         dimmerlights[i + j * 1000] -= 1;
@@ -202,8 +202,8 @@ fn puzzle_2015_6() -> (i64, i64) {
         }
         if line.starts_with("toggle") {
             let coords = p15_6_parse_coords(&line[7..]);
-            for i in coords[0][0]..coords[1][0] + 1 {
-                for j in coords[0][1]..coords[1][1] + 1 {
+            for i in coords[0][0]..=coords[1][0] {
+                for j in coords[0][1]..=coords[1][1] {
                     lights[i + j * 1000] = !lights[i + j * 1000];
                     dimmerlights[i + j * 1000] += 2;
                 }
