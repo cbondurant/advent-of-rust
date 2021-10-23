@@ -4,6 +4,10 @@ use std::collections::HashMap;
 use std::fs::read_to_string;
 use std::path::Path;
 
+mod d1507;
+
+use crate::d1507::puzzle_2015_7;
+
 fn get_input(year: i32, day: i32) -> String {
     read_to_string(Path::new(&format!("inputs/{}-{}.txt", year, day))).expect("")
 }
@@ -220,5 +224,5 @@ fn puzzle_2015_6() -> (i64, i64) {
 }
 
 fn main() {
-    println!("{:?}", puzzle_2015_6());
+    println!("{:?}", d1507::puzzle_2015_7());
 }
