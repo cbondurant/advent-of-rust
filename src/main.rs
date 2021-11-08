@@ -5,7 +5,7 @@ use std::collections::HashMap;
 mod d1507;
 mod get_data;
 
-use crate::d1507::puzzle_2015_7;
+use crate::d1507::puzzle;
 use crate::get_data::get_data;
 
 fn puzzle_2015_1() -> (i64, i64) {
@@ -220,7 +220,7 @@ fn puzzle_2015_6() -> (i64, i64) {
 }
 
 fn puzzle_2015_8() -> (i64, i64) {
-    let input = get_input(2015, 8);
+    let input = get_data(2015, 8);
     //let input = "\"\\x27\"\n\"aaa\\\"aaa\"\n\"\"\n\"abc\"";
     let mut total_chars = 0;
     let mut mem_chars = 0;

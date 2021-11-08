@@ -1,6 +1,4 @@
 use std::collections::HashMap;
-use std::fs::read_to_string;
-use std::path::Path;
 
 pub use crate::get_data::get_data;
 
@@ -60,7 +58,7 @@ fn eval_wire<'a>(
     return val;
 }
 
-pub fn puzzle_2015_7() -> (u16, u16) {
+pub fn puzzle() -> (u16, u16) {
     let input = get_data(2015, 7);
     let mut wires: HashMap<&str, ExprType> = HashMap::new();
     let mut cache = HashMap::new();
