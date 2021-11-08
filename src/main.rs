@@ -1,19 +1,15 @@
 #![allow(dead_code)]
 use std::cmp::{max, min};
 use std::collections::HashMap;
-use std::fs::read_to_string;
-use std::path::Path;
 
 mod d1507;
+mod get_data;
 
 use crate::d1507::puzzle_2015_7;
-
-fn get_input(year: i32, day: i32) -> String {
-    read_to_string(Path::new(&format!("inputs/{}-{}.txt", year, day))).expect("")
-}
+use crate::get_data::get_data;
 
 fn puzzle_2015_1() -> (i64, i64) {
-    let input = get_input(2015, 1);
+    let input = get_data(2015, 1);
     let mut floor = 0;
     let mut count = 0;
     let mut basecount = 0;
@@ -33,7 +29,7 @@ fn puzzle_2015_1() -> (i64, i64) {
 }
 
 fn puzzle_2015_2() -> (i64, i64) {
-    let input = get_input(2015, 2);
+    let input = get_data(2015, 2);
     let mut total_area = 0;
     let mut total_ribbon = 0;
     for line in input.split("\n") {
@@ -59,7 +55,7 @@ fn puzzle_2015_2() -> (i64, i64) {
 }
 
 fn puzzle_2015_3() -> (i64, i64) {
-    let input = get_input(2015, 3);
+    let input = get_data(2015, 3);
     let mut homes: HashMap<(i64, i64), bool> = HashMap::new();
     let mut robo_homes: HashMap<(i64, i64), bool> = HashMap::new();
     let (mut gx, mut gy) = (0, 0); // Ghost from part 1
@@ -118,7 +114,7 @@ fn puzzle_2015_4() -> (i64, i64) {
 }
 
 fn puzzle_2015_5() -> (i64, i64) {
-    let input = get_input(2015, 5);
+    let input = get_data(2015, 5);
     let mut count = 0;
     let mut count2 = 0;
     for line in input.split('\n') {
@@ -180,7 +176,7 @@ fn p15_6_parse_coords(expr: &str) -> Vec<Vec<usize>> {
 }
 
 fn puzzle_2015_6() -> (i64, i64) {
-    let input = get_input(2015, 6);
+    let input = get_data(2015, 6);
     let mut lights: Vec<bool> = vec![false; 1000 * 1000];
     let mut dimmerlights: Vec<i64> = vec![0; 1000 * 1000];
     for line in input.split("\n") {
