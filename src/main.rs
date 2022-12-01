@@ -1,8 +1,8 @@
 #![allow(dead_code)]
-mod puzzles;
 mod get_data;
+mod puzzles;
 
-use crate::puzzles::p1509::puzzle;
+use crate::puzzles::y2022::p01::puzzle;
 
 fn main() {
     println!("{:?}", puzzle());
