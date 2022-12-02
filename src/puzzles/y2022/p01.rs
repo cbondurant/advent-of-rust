@@ -17,8 +17,6 @@ pub fn puzzle() -> (i64, i64) {
 		elves.insert(total);
 	}
 
-	println!("{:?}", elves);
-
 	(
 		*elves.iter().rev().next().unwrap(),
 		elves.iter().rev().take(3).sum(),
